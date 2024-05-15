@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Classes\Controller\InputController" />
+    <None Remove="Classes\Controller\NewFile1.txt" />
+    <None Remove="Classes\Model\NewFile1.txt" />
+    <None Remove="Classes\Model\Plane Inherritance\NewFile1.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Classes\View\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

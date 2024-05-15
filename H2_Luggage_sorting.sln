@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "H2_Luggage_sorting", "H2_Luggage_sorting\H2_Luggage_sorting.csproj", "{9AF96B0F-A5A0-459B-8318-9BF5E5DD5DAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9AF96B0F-A5A0-459B-8318-9BF5E5DD5DAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AF96B0F-A5A0-459B-8318-9BF5E5DD5DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AF96B0F-A5A0-459B-8318-9BF5E5DD5DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AF96B0F-A5A0-459B-8318-9BF5E5DD5DAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B930A8C8-D643-4B36-823B-35B6145A2332}
+	EndGlobalSection
+EndGlobal
