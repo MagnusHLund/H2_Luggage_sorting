@@ -1,0 +1,13 @@
+﻿<Page x:Class="H2_Luggage_sorting.Views.ConveyorBelt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:H2_Luggage_sorting.Views"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        mc:Ignorable="d"
+        Title="ConveyorBelt" Height="500" Width="800">
+    <Grid>
+        <Image gif:ImageBehavior.AnimatedSource="/Images/belt.gif"></Image>
+    </Grid>
+</Page>

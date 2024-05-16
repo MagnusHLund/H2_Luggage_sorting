@@ -7,7 +7,39 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\CheckIn.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ConveyorBelt.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\FlightInformation.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SelectFlight.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SelectGate.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CheckIn.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ConveyorBelt.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\FlightInformation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SelectFlight.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SelectGate.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

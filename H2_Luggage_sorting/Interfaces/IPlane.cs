@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace H2_Luggage_sorting.Interfaces
 {
-	internal interface IPlane
+    public interface IPlane
 	{
+        public string PlaneId { get; }
+        public string FlightId { get; } 
+        public string DepartureTime { get; set; }
+        public string WeightLimit { get; }
 	}
 }

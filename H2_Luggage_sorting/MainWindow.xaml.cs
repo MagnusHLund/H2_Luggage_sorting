@@ -19,6 +19,12 @@ namespace H2_Luggage_sorting
 		public MainWindow()
 		{
 			InitializeComponent();
+			HandleMultipleViews("CheckIn");
+		}
+
+		private void HandleMultipleViews(string view)
+		{
+			Views.Navigate(new Uri($"Views/{view}.xaml", UriKind.Relative));
 		}
 	}
 }
