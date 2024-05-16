@@ -20,17 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Classes\Models\Counter Inherritance\Plane.cs" />
+    <Compile Remove="Classes\Models\Conveyor.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Classes\Controllers\InputController" />
     <None Remove="Classes\Controllers\NewFile1.txt" />
-    <None Remove="Classes\Models\Counter Inherritance\NewFile1.txt" />
-    <None Remove="Classes\Models\Counter Inherritance\NewFile2.txt" />
-    <None Remove="Classes\Models\Counter Inherritance\NewFile3.txt" />
-    <None Remove="Classes\Models\Counter Inherritance\NewFile4.txt" />
-    <None Remove="Classes\Models\Plane Inherritance\NewFile1.txt" />
     <None Remove="Images\CounterGreen.png" />
     <None Remove="Images\CounterOrange.png" />
     <None Remove="Images\CounterRed.png" />

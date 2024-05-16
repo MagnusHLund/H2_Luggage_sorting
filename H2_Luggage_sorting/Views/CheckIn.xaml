@@ -18,15 +18,57 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" x:Name="RedButton" Click="MyButton_Click" Tag="Red" Background="Transparent" BorderBrush="Transparent">
-                <Image Source="/Images/CounterRed.png" />
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height=".3*"/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <!-- Background image -->
+                            <Image Grid.Row="0" Source="/Images/No1.png"></Image>
+                            <Image Grid.Row="1" Source="/Images/CounterRed.png"/>
+
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
 
             <Button Grid.Column="1" x:Name="OrangeButton" Click="MyButton_Click" Tag="Orange" Background="Transparent" BorderBrush="Transparent">
-                <Image Source="/Images/CounterOrange.png" />
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height=".3*"/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <!-- Background image -->
+                            <Image Grid.Row="0" Source="/Images/No2.png"></Image>
+                            <Image Grid.Row="1" Source="/Images/CounterOrange.png"/>
+
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
 
             <Button Grid.Column="2" x:Name="GreenButton" Click="MyButton_Click" Tag="Green" Background="Transparent" BorderBrush="Transparent">
-                <Image Source="/Images/CounterGreen.png" />
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height=".3*"/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <!-- Background image -->
+                            <Image Grid.Row="0" Source="/Images/No3.png"></Image>
+                            <Image Grid.Row="1" Source="/Images/CounterGreen.png"/>
+
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
         </Grid>
         <TextBlock FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center">Check-in</TextBlock>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tAY8UjDBYBF4X07pM2hRSlyD4P2NBn372iBB0TNnLIjCn7a3TwLaGhOkx1exgnx3woxQKK9qSkYW6o5oIvhK8w==",
+  "dgSpecHash": "ao6lXV+DiBtRcGlF7HyklJibd69NvHdwrdTO4TnoM2E4kIDJDd2mwDL7vfE2BRtGCFi2pJPepGGsX4WDRxd7sw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\magnu\\source\\repos\\H2_Luggage_sorting\\H2_Luggage_sorting\\H2_Luggage_sorting\\H2_Luggage_sorting.csproj",
+  "projectFilePath": "C:\\Users\\magnu\\source\\repos\\H2_Luggage_sorting\\H2_Luggage_sorting\\H2_Luggage_sorting.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\magnu\\.nuget\\packages\\wpfanimatedgif\\2.0.2\\wpfanimatedgif.2.0.2.nupkg.sha512"
   ],
