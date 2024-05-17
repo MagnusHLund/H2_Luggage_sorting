@@ -1,4 +1,4 @@
-﻿using H2_Luggage_sorting.Interfaces;
+using H2_Luggage_sorting.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +12,13 @@ namespace H2_Luggage_sorting.Classes.Models
     {
         #region Fields
         private protected List<Passenger> _buffer;
-        private protected int _bufferCapacity = 20;
+        private protected int _bufferCapacity = 5;
         private protected string _counterId = "";
         private protected sbyte _status;
         #endregion
 
         #region Constructor
-        public Counter(string counterId, sbyte status, int bufferCapacity = 20)
+        public Counter(string counterId, sbyte status, int bufferCapacity = 5)
         {
             _counterId = counterId;
             _status = status;
