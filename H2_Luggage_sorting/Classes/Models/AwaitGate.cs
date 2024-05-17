@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -83,7 +83,7 @@ namespace H2_Luggage_sorting.Classes.Models
             {
                 for (int gateNumber = 1; gateNumber <= 3; gateNumber++)
                 {
-                    bool isGateOpen = CheckIfGateIsOpen(gateNumber);
+                    bool isGateOpen = CheckIfGateIsOpenMethod(gateNumber);
 
                     if (isGateOpen)
                     {
@@ -94,7 +94,7 @@ namespace H2_Luggage_sorting.Classes.Models
             }
         }
 
-        private static bool CheckIfGateIsOpen(int gateNumber)
+        private static bool CheckIfGateIsOpenMethod(int gateNumber)
         {
             // Implement gate status check logic here
             return false;
