@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,6 +53,45 @@ namespace H2_Luggage_sorting.Classes.Models
             _date = myDate;
         }
 
+        #region Properties
+
+        public int Second
+        {
+            get { return _second; }
+            set { _second = value; }
+        }
+
+        public int Minute
+        {
+            get { return _minute; }
+            set { _minute = value; }
+
+        }
+
+        public int Hour
+        { 
+            get { return _hour; } 
+            set {  _hour = value; } 
+        }
+
+        public int Month
+        {
+            get { return _month; }
+            set { _month = value; }
+        }
+
+        public int Day
+        {
+            get { return _day; }
+            set { _day = value; }
+        }
+
+        public DateTime Date
+        {
+            get { return _date; }
+            set { _date = value; }
+        }
+        #endregion
         #endregion
 
         #region Methods
