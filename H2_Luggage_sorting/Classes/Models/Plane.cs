@@ -7,18 +7,29 @@ namespace H2_Luggage_sorting.Classes.Models
 		#region Fields
 
 		private protected string _planeId = "";
+		public string _airline = "";
+		public string _planeModel = "";
 		private protected string _flightId = "";
 		private protected string _departureTime = "";
 		private protected uint _weightLimit;
         private protected uint _totalWeight;
-        #endregion
+		public ushort _availableSeats;
+		#endregion
 
-        #region Properties
+		#region Properties
 
-        public string PlaneId 
+		public string PlaneId 
         { 
             get { return _planeId; } 
         }
+		public string Airline
+		{
+			get { return _airline; }
+		}
+		public string PlaneModel
+		{
+			get { return _planeModel; }
+		}
         public string FlightId
 		{
 			get { return _flightId; }
@@ -36,6 +47,13 @@ namespace H2_Luggage_sorting.Classes.Models
 		{
 			get { return _totalWeight; }
 			set { _totalWeight = value; }
+		}
+
+		public ushort AvailableSeats
+		{
+			get { return _availableSeats; _availableSeats; }
+			set { _availableSeats = value;}
+			set { _availableSeats = value; }
 		}
 
 		#endregion

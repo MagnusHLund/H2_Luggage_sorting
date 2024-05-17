@@ -10,7 +10,6 @@ namespace H2_Luggage_sorting.Interfaces
 	{
 		public string FirstName { get; }
 		public string LastName { get; }
-		public string PassportNumber { get; }
-		public string boarding_pass_number { get; }
+		public uint FlightId { get; }
 	}
 }

@@ -12,25 +12,40 @@ namespace H2_Luggage_sorting.Classes.Models
     {
         #region Fields
         private protected List<Passenger> _buffer;
-        private protected int _bufferCapacity;
-        private protected string _counterId;
+        private protected int _bufferCapacity = 20;
+        private protected string _counterId = "";
         private protected sbyte _status;
         #endregion
 
         #region Constructor
+        public Counter(string counterId, sbyte status, int bufferCapacity = 20)
+        {
+            _counterId = counterId;
+            _status = status;
+            _bufferCapacity = bufferCapacity;
+            _buffer = new List<Passenger>(_bufferCapacity);
+        }
+
         #endregion
 
         #region Properties
         public string CounterId { get; }
         public sbyte Status { get; set; }
-        public int BufferCapacity { get; set; }
         public List<Passenger> Buffer { get { return new List<Passenger>(_buffer);} }
+        
         #endregion
 
         #region Methods
-        
-        
 
+        public void AddPassenger(Passenger passenger)
+        {
+            if (_buffer.Count >= _bufferCapacity)
+            {
+                throw new InvalidOperationException("Buffer is full.");
+            }
+            _buffer.Add(passenger);
+        }
+        
         #endregion
 
     }

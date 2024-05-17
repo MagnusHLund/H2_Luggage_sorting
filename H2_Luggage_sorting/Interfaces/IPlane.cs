@@ -15,7 +15,7 @@ namespace H2_Luggage_sorting.Interfaces
         public string DepartureTime { get; set; }
         public uint WeightLimit { get; }
         public uint TotalWeight { get; set; }
-        public ushort Seats { get; set; }
+        public ushort AvailableSeats { get; set; }
 
 
         void DepartPlane();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace H2_Luggage_sorting.Classes.Models
 {
@@ -15,6 +16,7 @@ namespace H2_Luggage_sorting.Classes.Models
         private uint _passengerId;
         private uint _luggageId;
         private byte _gate;
+        private bool _checkIfGateIsOpen;
 
         #endregion
 
@@ -22,19 +24,15 @@ namespace H2_Luggage_sorting.Classes.Models
 
         public AwaitGate(byte capacity, uint passengerId, uint luggageId, byte gate)
         {
-            if (capacity < 1)
-            {
-                throw new ArgumentException("Capacity must be at least 1.", nameof(capacity));
-            }
-
             _capacity = capacity;
-            _buffer = new List<string>(_capacity);
-            _head = 0;
-            _tail = 0;
-            _count = 0;
             _passengerId = passengerId;
             _luggageId = luggageId;
             _gate = gate;
+            _buffer = new List<string>(capacity);
+            _head = 0;
+            _tail = 0;
+            _count = 0;
+            _checkIfGateIsOpen = false;
         }
 
         #endregion
@@ -42,26 +40,66 @@ namespace H2_Luggage_sorting.Classes.Models
         #region Properties
 
         public byte Capacity
-            {
-                get { return _capacity; }
-            }
+        {
+            get { return _capacity; }
+        }
 
-            public byte Count
-            {
-                get { return _count; }
-            }
+        public byte Count
+        {
+            get { return _count; }
+        }
 
-            public uint PassengerId
-            {
-                get { return _passengerId; }
-                set { _passengerId = value; }
-            }
+        public uint PassengerId
+        {
+            get { return _passengerId; }
+            set { _passengerId = value; }
+        }
 
-            public uint LuggageId
+        public uint LuggageId
+        {
+            get { return _luggageId; }
+            set { _luggageId = value; }
+        }
+
+        public bool CheckIfGateIsOpen
+        {
+            get { return _checkIfGateIsOpen; }
+            set { _checkIfGateIsOpen = value; }
+        }
+
+        #endregion
+
+        #region Methods
+
+        public static void StartMonitoring()
+        {
+            Thread gateMonitoringThread = new Thread(new ThreadStart(MonitorGateStatus));
+            gateMonitoringThread.Start();
+        }
+
+        private static void MonitorGateStatus()
+        {
+            while (true)
             {
-                get { return _luggageId; }
-                set { _luggageId = value; }
+                for (int gateNumber = 1; gateNumber <= 3; gateNumber++)
+                {
+                    bool isGateOpen = CheckIfGateIsOpen(gateNumber);
+
+                    if (isGateOpen)
+                    {
+                        // Move customers to gate
+                    }
+                }
+                Thread.Sleep(1000);
             }
+        }
+
+        private static bool CheckIfGateIsOpen(int gateNumber)
+        {
+            // Implement gate status check logic here
+            return false;
+        }
+
         #endregion
     }
 }
