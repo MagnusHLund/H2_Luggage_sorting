@@ -30,7 +30,7 @@ namespace H2_Luggage_sorting.Classes.Models
         {
             _gateNumber = gateNumber;
             _isGateOpen = isGateOpen;
-            // Removing one our from our depatureTime variable, and storing it in our _gateOpeningTime variable, because gates open 1 hour before departure time.
+            // Removing one hour from our depatureTime variable, and storing it in our _gateOpeningTime variable, because gates open 1 hour before departure time.
             depatureTime.AddHours(GATE_OPENING_TIME_BEFORE_DEPATURE);
             _gateOpeningTime = depatureTime;
         }
