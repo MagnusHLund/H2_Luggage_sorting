@@ -12,13 +12,13 @@ namespace H2_Luggage_sorting.Classes.Models
     {
         #region Fields
         private protected List<Passenger> _buffer;
-        private protected int _bufferCapacity = 5;
+        private protected int _bufferCapacity;  
         private protected string _counterId = "";
         private protected sbyte _status;
         #endregion
 
         #region Constructor
-        public Counter(string counterId, sbyte status, int bufferCapacity = 5)
+        public Counter(string counterId, sbyte status, int bufferCapacity)
         {
             _counterId = counterId;
             _status = status;
@@ -31,8 +31,8 @@ namespace H2_Luggage_sorting.Classes.Models
         #region Properties
         public string CounterId { get; }
         public sbyte Status { get; set; }
-        public List<Passenger> Buffer { get { return new List<Passenger>(_buffer);} }
-        
+        public List<Passenger> Buffer { get { return new List<Passenger>(_buffer); } }
+
         #endregion
 
         #region Methods
@@ -45,7 +45,7 @@ namespace H2_Luggage_sorting.Classes.Models
             }
             _buffer.Add(passenger);
         }
-        
+
         #endregion
 
     }

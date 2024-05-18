@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\magnu\source\repos\H2_Luggage_sorting\H2_Luggage_sorting\H2_Luggage_sorting\obj\Debug\net8.0-windows\
+C:\Users\magnu\source\repos\H2_Luggage_sorting\H2_Luggage_sorting\obj\Debug\net8.0-windows\
 H2_Luggage_sorting
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\magnu\source\repos\H2_Luggage_sorting\H2_Luggage_sorting\H2_Luggage_sorting\App.xaml
-6-1734433240
+C:\Users\magnu\source\repos\H2_Luggage_sorting\H2_Luggage_sorting\App.xaml
+11407045341
 
-26-121983077
+23-829022513
 207-1607431240
-MainWindow.xaml;Views\CheckIn.xaml;Views\ConveyorBelt.xaml;Views\FlightInformation.xaml;Views\SelectFlight.xaml;Views\SelectGate.xaml;
+MainWindow.xaml;
 
-True
+False
 

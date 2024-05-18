@@ -53,7 +53,7 @@ namespace H2_Luggage_sorting.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/H2_Luggage_sorting;component/views/selectgate.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/H2_Luggage_sorting;V1.0.0.0;component/views/selectgate.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\SelectGate.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

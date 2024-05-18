@@ -9,16 +9,27 @@ namespace H2_Luggage_sorting.Classes.Models
 	internal class Luggage
 	{
         #region Fields
-        private protected string _luggageId;
-        private protected float _luggageWeight;
-		#endregion
+        private protected uint _luggageId;
+        private protected uint _flightId;
+        private protected float _weight;
+        #endregion
 
-		#region Constructor
-		internal Luggage(string luggageId, float luggageWeight) 
+
+        #region Properties
+        internal uint LuggageId { get; set; }
+        internal uint FlightId { get; set; }
+        internal float Weight { get; set; }
+        #endregion  
+
+
+        #region Constructor
+        internal Luggage(uint luggageId, uint flightId, float Weight) 
         {
             this._luggageId = luggageId;
-            this._luggageWeight = luggageWeight;
+            this._weight = Weight;
+            this._flightId = flightId;
         }
+
 		#endregion
 	}
 }

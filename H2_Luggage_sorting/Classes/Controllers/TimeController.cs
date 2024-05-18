@@ -1,4 +1,5 @@
-﻿using System;
+﻿using H2_Luggage_sorting.Classes.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -10,8 +11,8 @@ namespace H2_Luggage_sorting.Classes.Controllers
     internal class TimeController
     {
         #region Fields
-
-        const int ticks = 500;
+        private TimeModel _timeModel = new TimeModel(6, 1, 2024);
+        const int ticks = 500; // half a second
 
         #endregion
 
@@ -22,12 +23,12 @@ namespace H2_Luggage_sorting.Classes.Controllers
         #endregion
 
         #region Methods
-        public DateTime AddMinuteToDate(DateTime myDate)
+        public DateTime AddMinuteToDate(int minutes)
         {
-            myDate.AddMinutes(1);
+            _timeModel.AddMinutesToDateTime(minutes);
             Thread.Sleep(ticks);
 
-            return myDate;
+            return _timeModel.GetDateTime();
         }
         #endregion
     }

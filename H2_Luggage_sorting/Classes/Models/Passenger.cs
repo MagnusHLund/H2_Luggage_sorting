@@ -13,7 +13,7 @@ namespace H2_Luggage_sorting.Classes.Models
 		public string FirstName { get; }
 		public string LastName { get; }
 		public uint FlightId { get; }
-		public Luggage Luggage { get; }
+		public Luggage Luggage {  get; }
         #endregion
 
         #region Constructors

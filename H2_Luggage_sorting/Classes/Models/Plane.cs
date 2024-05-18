@@ -51,9 +51,8 @@ namespace H2_Luggage_sorting.Classes.Models
 
 		public ushort AvailableSeats
 		{
-			get { return _availableSeats; _availableSeats; }
+			get { return _availableSeats; }
 			set { _availableSeats = value;}
-			set { _availableSeats = value; }
 		}
 
 		#endregion

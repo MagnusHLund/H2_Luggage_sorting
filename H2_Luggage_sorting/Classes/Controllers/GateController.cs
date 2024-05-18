@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace H2_Luggage_sorting.Classes.Controllers
 {
-	internal class GateController
-	{
-	}
+    internal class GateController
+    {
+
+    }
 }

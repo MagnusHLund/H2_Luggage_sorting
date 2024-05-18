@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using H2_Luggage_sorting.Classes.Controllers;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,13 +19,24 @@ namespace H2_Luggage_sorting
 	{
 		public MainWindow()
 		{
-			InitializeComponent();
-			HandleMultipleViews("CheckIn");
+			InitializeComponent(); 
+			startupThreads();
 		}
 
-		private void HandleMultipleViews(string view)
+		private void startupThreads()
 		{
-			Views.Navigate(new Uri($"Views/{view}.xaml", UriKind.Relative));
+			// Starts threads for al the processes
+			//ThreadPool.QueueUserWorkItem(new TimeController().AddMinuteToDate(1));
+		}
+
+		private void Navbar()
+		{
+			// Changes which view is displayed
+		}
+
+		private void MyButton_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

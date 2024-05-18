@@ -38,19 +38,15 @@ namespace H2_Luggage_sorting.Classes.Models
         /// <param name="month"></param>
         /// <param name="day"></param>
         /// <param name="year"></param>
-        public TimeModel(int second, int minute, int hour, int month, int day, int year) 
+        public TimeModel(int month, int day, int year)
         {
-            this._second = second;
-            this._minute = minute;
-            this._hour = hour;
-
             this._month = month;
             this._day = day;
             this._year = year;
-            
+
             // Setting the given time to date
-            DateTime myDate = new DateTime(_year, _month, _day, _hour, _minute, _second);
-            _date = myDate;
+            DateTime date = new DateTime(_year, _month, _day);
+            _date = date;
         }
 
         #region Properties
@@ -69,9 +65,9 @@ namespace H2_Luggage_sorting.Classes.Models
         }
 
         public int Hour
-        { 
-            get { return _hour; } 
-            set {  _hour = value; } 
+        {
+            get { return _hour; }
+            set { _hour = value; }
         }
 
         public int Month
@@ -95,6 +91,16 @@ namespace H2_Luggage_sorting.Classes.Models
         #endregion
 
         #region Methods
+
+        internal void AddMinutesToDateTime(int minutes)
+        {
+            _date = _date.AddMinutes(minutes);
+        }
+
+        internal DateTime GetDateTime()
+        {
+            return _date;   
+        }
 
         #endregion
     }

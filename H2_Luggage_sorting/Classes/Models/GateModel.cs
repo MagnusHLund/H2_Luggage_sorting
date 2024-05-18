@@ -12,7 +12,7 @@ namespace H2_Luggage_sorting.Classes.Models
     internal class GateModel
     {
         // This const is responisble for the amount of hours before a gate opens before depature time.
-        const int GATE_OPENING_TIME_BEFORE_DEPATURE = 1;
+        const byte GATE_OPENING_TIME_BEFORE_DEPATURE = 1;
         #region Fields
 
         private protected byte _gateNumber;
@@ -26,7 +26,7 @@ namespace H2_Luggage_sorting.Classes.Models
 
         #region Constructors
 
-        public GateModel(byte gateNumber, bool isGateOpen, DateTime depatureTime) 
+        public GateModel(byte gateNumber, bool isGateOpen, DateTime depatureTime)
         {
             _gateNumber = gateNumber;
             _isGateOpen = isGateOpen;
