@@ -39,15 +39,6 @@ namespace H2_Luggage_sorting.Classes.Models
 			get { return _departureTime; }
 			set { _departureTime = value; }
 		}
-		public uint WeightLimit
-		{
-			get { return _weightLimit; }
-		}
-		public uint TotalWeight
-		{
-			get { return _totalWeight; }
-			set { _totalWeight = value; }
-		}
 
 		public ushort AvailableSeats
 		{

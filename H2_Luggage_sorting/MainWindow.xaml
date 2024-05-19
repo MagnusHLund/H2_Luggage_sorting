@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="500" Width="800">
     <Grid>
-        <Grid>
+        <Grid> <!-- Check-in -->
             <Grid.RowDefinitions>
                 <RowDefinition Height=".3*"/>
                 <RowDefinition/>
@@ -77,10 +77,10 @@
             </Grid>
             <TextBlock FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center">Check-in</TextBlock>
         </Grid>
-        <Grid>
+        <Grid> <!-- Conveyor-in -->
             <Image gif:ImageBehavior.AnimatedSource="/Images/belt.gif"></Image>
         </Grid>
-        <Grid>
+        <Grid> <!-- Gates -->
             <Grid.RowDefinitions>
                 <RowDefinition Height=".2*"/>
                 <RowDefinition/>
@@ -144,6 +144,9 @@
                 </Button>
             </Grid>
             <TextBlock FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center">Select Gate</TextBlock>
+        </Grid>
+        <Grid> <!-- Clock -->
+            <TextBlock x:Name="clock">01/06/2024 00:00:00</TextBlock>
         </Grid>
     </Grid>
 </Window>

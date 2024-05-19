@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("H2_Luggage_sorting")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0caa195f170fc3c55da1d8ba78aec2a5194b9c9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4b96bd084c3873acd98fa54c357c86a161609fb")]
 [assembly: System.Reflection.AssemblyProductAttribute("H2_Luggage_sorting")]
 [assembly: System.Reflection.AssemblyTitleAttribute("H2_Luggage_sorting")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

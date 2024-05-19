@@ -9,12 +9,40 @@ namespace H2_Luggage_sorting.Classes.Controllers
 {
 	internal class CheckInController
 	{
-		internal void ChangeCounterState(Counter counter)
+		private TimeModel _timeModel;
+		private PassengersModel _passengersModel;
+		private CountersModel _countersModel;
+
+		internal CheckInController(TimeModel timeModel, PassengersModel passengersModel, CountersModel countersModel)
 		{
-			// 0 = available, green color.
-			// 1 = Processing, orange color.
-			// 2 = Busy, orange color.
-			counter.Status = 1;
+			this._timeModel = timeModel;
+			this._passengersModel = passengersModel;
+			this._countersModel = countersModel;
+		}
+
+		internal void HandleCounters()
+		{
+			while (true)
+			{
+				if (_timeModel.IsMidnight())
+				{
+					// Get passengers
+					List<Dictionary<string, object>> passengersRawData = new DatabaseConnection().CallProcedure("GetPassengersByDepartureDate");
+
+					Passenger[] passengers = passengersRawData.Select(row => new Passenger(
+						firstName: row["first_name"].ToString(),
+						lastName: row["last_name"].ToString(),
+						flightId: Convert.ToUInt32(row["flight_id"]),
+						luggage: new Luggage(1, 1, 1)
+					)).ToArray();
+
+				}
+
+				while (_passengersModel.GetPassengers().Count > 0)
+				{
+
+				}
+			}
 		}
 	}
 }

@@ -8,12 +8,7 @@ namespace H2_Luggage_sorting.Classes.Models
 {
 	internal class PassengersModel
 	{
-		private List<Passenger> _passengers;
-
-		PassengersModel()
-		{
-			_passengers = new List<Passenger>();
-		}
+		private List<Passenger> _passengers = new List<Passenger>();
 
 		internal void AddPassengers(Passenger[] passengers)
 		{

@@ -5,47 +5,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using H2_Luggage_sorting.Classes.Models;
+using System.Collections.Concurrent;
 
 namespace H2_Luggage_sorting.Classes.Models
 {
     internal class Counter : ICounter
     {
         #region Fields
-        private protected List<Passenger> _buffer;
-        private protected int _bufferCapacity;  
-        private protected string _counterId = "";
-        private protected sbyte _status;
-        #endregion
-
-        #region Constructor
-        public Counter(string counterId, sbyte status, int bufferCapacity)
-        {
-            _counterId = counterId;
-            _status = status;
-            _bufferCapacity = bufferCapacity;
-            _buffer = new List<Passenger>(_bufferCapacity);
-        }
-
+        private protected byte _maxQueueLength;
+        private protected BlockingCollection<Passenger> _buffer;
+        private protected byte _status;
         #endregion
 
         #region Properties
-        public string CounterId { get; }
         public sbyte Status { get; set; }
-        public List<Passenger> Buffer { get { return new List<Passenger>(_buffer); } }
 
         #endregion
 
+        internal Counter (byte status = 0, byte maxQueueLength = 10)
+        {
+            _status = status;
+            _maxQueueLength = maxQueueLength;
+            _buffer = new BlockingCollection<Passenger>(_maxQueueLength);
+        }
+
         #region Methods
 
-        public void AddPassenger(Passenger passenger)
+        internal int GetCounterQueueLength()
         {
-            if (_buffer.Count >= _bufferCapacity)
-            {
-                throw new InvalidOperationException("Buffer is full.");
-            }
+            return _buffer.Count;
+        }
+
+        internal void RemovePassengerFromQueue()
+        {
+			_buffer.TryTake(out Passenger passenger);
+		}
+
+        internal void AddPassengerToQueue(Passenger passenger)
+        {
             _buffer.Add(passenger);
         }
 
+        internal byte GetMaxQueueCapacitiy()
+        {
+            return _maxQueueLength;
+        }
         #endregion
 
     }

@@ -14,10 +14,6 @@ namespace H2_Luggage_sorting.Classes.Models
         // Creating fields for saving the time in the airport
         #region Fields
 
-        private protected int _second;
-        private protected int _minute;
-        private protected int _hour;
-
         private protected int _month;
         private protected int _day;
         private protected int _year;
@@ -27,14 +23,11 @@ namespace H2_Luggage_sorting.Classes.Models
 
         #endregion
 
-        #region Constructors
+        #region Constructor
 
         /// <summary>
         /// When initiating a new instance of time model, you will need to give specific time parameters.
         /// </summary>
-        /// <param name="second"></param>
-        /// <param name="minute"></param>
-        /// <param name="hour"></param>
         /// <param name="month"></param>
         /// <param name="day"></param>
         /// <param name="year"></param>
@@ -48,46 +41,6 @@ namespace H2_Luggage_sorting.Classes.Models
             DateTime date = new DateTime(_year, _month, _day);
             _date = date;
         }
-
-        #region Properties
-
-        public int Second
-        {
-            get { return _second; }
-            set { _second = value; }
-        }
-
-        public int Minute
-        {
-            get { return _minute; }
-            set { _minute = value; }
-
-        }
-
-        public int Hour
-        {
-            get { return _hour; }
-            set { _hour = value; }
-        }
-
-        public int Month
-        {
-            get { return _month; }
-            set { _month = value; }
-        }
-
-        public int Day
-        {
-            get { return _day; }
-            set { _day = value; }
-        }
-
-        public DateTime Date
-        {
-            get { return _date; }
-            set { _date = value; }
-        }
-        #endregion
         #endregion
 
         #region Methods
@@ -100,6 +53,18 @@ namespace H2_Luggage_sorting.Classes.Models
         internal DateTime GetDateTime()
         {
             return _date;   
+        }
+
+        internal bool IsMidnight()
+        {
+            if(_date.TimeOfDay == TimeSpan.Zero)
+            {
+                return true;
+            }
+             else
+            {
+                return false;
+            }
         }
 
         #endregion

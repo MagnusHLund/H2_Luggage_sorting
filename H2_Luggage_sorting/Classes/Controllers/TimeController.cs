@@ -5,30 +5,44 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace H2_Luggage_sorting.Classes.Controllers
 {
     internal class TimeController
     {
-        #region Fields
-        private TimeModel _timeModel = new TimeModel(6, 1, 2024);
-        const int ticks = 500; // half a second
+		#region Fields
+		private TimeModel _timeModel;
+		private int _ticks;
+		private Dispatcher _dispatcher;
+		private TextBlock _clockElement;
 
-        #endregion
+		#endregion
 
-        #region Constructors
+		#region Constructors
+		internal TimeController(TimeModel timeModel, int ticks, Dispatcher dispatcher, TextBlock clock)
+		{
+			this._timeModel = timeModel;
+			this._ticks = ticks;
+			this._dispatcher = dispatcher;
+			this._clockElement = clock;
+		}
+		#endregion
 
-
-
-        #endregion
-
-        #region Methods
-        public DateTime AddMinuteToDate(int minutes)
+		#region Methods
+		internal DateTime AddMinutesToDate(int minutes)
         {
-            _timeModel.AddMinutesToDateTime(minutes);
-            Thread.Sleep(ticks);
+			while(true)
+			{
+				_timeModel.AddMinutesToDateTime(minutes);
+				Thread.Sleep(_ticks);
 
-            return _timeModel.GetDateTime();
+				_dispatcher.Invoke(() =>
+				{
+					_clockElement.Text = _timeModel.GetDateTime().ToString();
+				});
+			}
         }
         #endregion
     }

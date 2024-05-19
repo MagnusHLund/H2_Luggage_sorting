@@ -13,8 +13,6 @@ namespace H2_Luggage_sorting.Interfaces
         public string PlaneModel { get; }
         public string FlightId { get; } 
         public string DepartureTime { get; set; }
-        public uint WeightLimit { get; }
-        public uint TotalWeight { get; set; }
         public ushort AvailableSeats { get; set; }
 
 
