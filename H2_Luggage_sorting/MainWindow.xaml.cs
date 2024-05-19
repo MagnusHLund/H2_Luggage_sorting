@@ -19,9 +19,11 @@ namespace H2_Luggage_sorting
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private TimeModel _timeModel = new TimeModel(6, 1, 2024);
+		private TimeModel _timeModel = new TimeModel(6, 1, 2024, 100);
 		private PassengersModel _passengersModel = new PassengersModel();
 		private CountersModel _countersModel = new CountersModel();
+		private GateModel _gateModel = new GateModel();
+		private LuggageModel _luggageModel = new LuggageModel();
 
 		public MainWindow()
 		{
@@ -33,7 +35,7 @@ namespace H2_Luggage_sorting
 		{
 			// Time
 			const int ticks = 100;
-			TimeController timeController = new TimeController(_timeModel, ticks, Dispatcher.CurrentDispatcher, clock);
+			TimeController timeController = new TimeController(_timeModel, Dispatcher.CurrentDispatcher, clock);
 			Thread thread = new Thread(() => timeController.AddMinutesToDate(1));
 			thread.Start();
 
@@ -42,16 +44,28 @@ namespace H2_Luggage_sorting
 			// ^ This information is gathered from a stored procedure.
 			// ^ There are 3 check-in counters and each can help 1 passenger at a time. It takes 1 minute to help a passenger. 
 			// ^ There is minimum 1 counter open and number 2 opens if number 1 has 20 people in queue. Number 3 opens if number 2 has 20 people in queue. 
-			CheckInController checkInController = new CheckInController(_timeModel, _passengersModel, _countersModel);
-			ThreadPool.QueueUserWorkItem(checkInController.HandleCounters());
+			CheckInController checkInController = new CheckInController(_timeModel, _passengersModel, _countersModel, _luggageModel);
+			Task.Run(() => checkInController.HandleCounters());
 
-			// 
-
+			LuggageController luggageController = new LuggageController(_luggageModel);
+			Task.Run(() => luggageController.SortLuggageToGate());
 		}
 
-		private void Navbar()
+		private void NavbarButton_Click(object sender, RoutedEventArgs e)
 		{
-			// Changes which view is displayed
+			Button button = sender as Button;
+			if (button != null)
+			{
+				string sectionName = button.Tag.ToString();
+				ShowSection(sectionName);
+			}
+		}
+
+		private void ShowSection(string sectionName)
+		{
+			CheckInSection.Visibility = sectionName == "CheckInSection" ? Visibility.Visible : Visibility.Collapsed;
+			ConveyorBeltSection.Visibility = sectionName == "ConveyorBeltSection" ? Visibility.Visible : Visibility.Collapsed;
+			GatesSection.Visibility = sectionName == "GatesSection" ? Visibility.Visible : Visibility.Collapsed;
 		}
 
 		private void MyButton_Click(object sender, RoutedEventArgs e)

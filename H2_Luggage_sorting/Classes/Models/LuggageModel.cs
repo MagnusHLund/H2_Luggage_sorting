@@ -9,22 +9,23 @@ namespace H2_Luggage_sorting.Classes.Models
 {
 	internal class LuggageModel
 	{
-		#region Fields
-		private List<Luggage> _luggageToSort = new List<Luggage>();
-		#endregion
+        #region Fields
+        private List<Luggage> _luggageToSort = new List<Luggage>();
+        private Dictionary<uint, List<Luggage>> _sortedLuggage = new Dictionary<uint, List<Luggage>>();
+        #endregion
 
-		#region Constructor 
+        #region Properties
+        internal List<Luggage> LuggageToSort
+        {
+            get => _luggageToSort;
+            set => _luggageToSort = value;
+        }
 
-
-
-		#endregion
-
-		#region Methods
-
-		internal List<Luggage> SortLuggage(List<Luggage> luggage)
-		{
-			return luggage;
- 		}
-		#endregion
-	}
+        internal Dictionary<uint, List<Luggage>> SortedLuggage
+        {
+            get => _sortedLuggage;
+            set => _sortedLuggage = value;
+        }
+        #endregion
+    }
 }

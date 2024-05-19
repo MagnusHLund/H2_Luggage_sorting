@@ -5,22 +5,18 @@ namespace H2_Luggage_sorting.Classes.Models
     public class Plane : IPlane
 	{
 		#region Fields
-
-		private protected string _planeId = "";
+		private protected string _flightId = "";
 		public string _airline = "";
 		public string _planeModel = "";
-		private protected string _flightId = "";
-		private protected string _departureTime = "";
-		private protected uint _weightLimit;
-        private protected uint _totalWeight;
-		public ushort _availableSeats;
+		private protected string _flightNumber = "";
+		private protected DateTime _departureTime;
 		#endregion
 
 		#region Properties
 
-		public string PlaneId 
+		public string FlightId 
         { 
-            get { return _planeId; } 
+            get { return _flightId; } 
         }
 		public string Airline
 		{
@@ -30,27 +26,30 @@ namespace H2_Luggage_sorting.Classes.Models
 		{
 			get { return _planeModel; }
 		}
-        public string FlightId
+        public string FlightNumber
 		{
-			get { return _flightId; }
+			get { return _flightNumber; }
 		}
-		public string DepartureTime
+		public DateTime DepartureTime
 		{
 			get { return _departureTime; }
 			set { _departureTime = value; }
 		}
 
-		public ushort AvailableSeats
+		#endregion
+
+		#region Constructor
+
+		internal Plane(string flightId, string airline, string planeModel, string flightNumber, DateTime departureTime)
 		{
-			get { return _availableSeats; }
-			set { _availableSeats = value;}
+			this._flightId = flightId;
+			this._airline = airline;
+			this._planeModel = planeModel;
+			this._flightNumber = flightNumber;
+			this._departureTime = departureTime;
 		}
 
 		#endregion
 
-		public void DepartPlane() 
-		{ 
-
-		}
 	}
 }

@@ -14,17 +14,15 @@ namespace H2_Luggage_sorting.Classes.Controllers
     {
 		#region Fields
 		private TimeModel _timeModel;
-		private int _ticks;
 		private Dispatcher _dispatcher;
 		private TextBlock _clockElement;
 
 		#endregion
 
 		#region Constructors
-		internal TimeController(TimeModel timeModel, int ticks, Dispatcher dispatcher, TextBlock clock)
+		internal TimeController(TimeModel timeModel, Dispatcher? dispatcher, TextBlock? clock)
 		{
 			this._timeModel = timeModel;
-			this._ticks = ticks;
 			this._dispatcher = dispatcher;
 			this._clockElement = clock;
 		}
@@ -36,7 +34,7 @@ namespace H2_Luggage_sorting.Classes.Controllers
 			while(true)
 			{
 				_timeModel.AddMinutesToDateTime(minutes);
-				Thread.Sleep(_ticks);
+				Thread.Sleep(_timeModel.GetTicks());
 
 				_dispatcher.Invoke(() =>
 				{
@@ -44,6 +42,17 @@ namespace H2_Luggage_sorting.Classes.Controllers
 				});
 			}
         }
+
+		internal async Task WaitForMinutesToPass(int minutesToWait)
+		{
+			DateTime target = _timeModel.GetDateTime();
+			target.AddMinutes(minutesToWait);
+
+			while(target > _timeModel.GetDateTime())
+			{
+				await Task.Delay(_timeModel.GetTicks());
+			}
+		}
         #endregion
     }
 }

@@ -17,6 +17,7 @@ namespace H2_Luggage_sorting.Classes.Models
         private protected int _month;
         private protected int _day;
         private protected int _year;
+        private protected int _ticks;
 
         // Date in the airport
         private protected DateTime _date;
@@ -31,11 +32,12 @@ namespace H2_Luggage_sorting.Classes.Models
         /// <param name="month"></param>
         /// <param name="day"></param>
         /// <param name="year"></param>
-        public TimeModel(int month, int day, int year)
+        public TimeModel(int month, int day, int year, int ticks)
         {
             this._month = month;
             this._day = day;
             this._year = year;
+            this._ticks = ticks;
 
             // Setting the given time to date
             DateTime date = new DateTime(_year, _month, _day);
@@ -45,9 +47,9 @@ namespace H2_Luggage_sorting.Classes.Models
 
         #region Methods
 
-        internal void AddMinutesToDateTime(int minutes)
+        internal void AddMinutesToDateTime(int minute)
         {
-            _date = _date.AddMinutes(minutes);
+            _date = _date.AddMinutes(minute);
         }
 
         internal DateTime GetDateTime()
@@ -67,6 +69,11 @@ namespace H2_Luggage_sorting.Classes.Models
             }
         }
 
-        #endregion
-    }
+		internal int GetTicks()
+		{
+			return _ticks;
+		}
+
+		#endregion
+	}
 }

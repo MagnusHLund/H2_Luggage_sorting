@@ -1,4 +1,5 @@
-﻿using H2_Luggage_sorting.Classes.Models;
+﻿
+using H2_Luggage_sorting.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,37 +13,77 @@ namespace H2_Luggage_sorting.Classes.Controllers
 		private TimeModel _timeModel;
 		private PassengersModel _passengersModel;
 		private CountersModel _countersModel;
+		private LuggageModel _luggageModel;
+		
 
-		internal CheckInController(TimeModel timeModel, PassengersModel passengersModel, CountersModel countersModel)
+
+		private TimeController _timeController;
+
+		internal CheckInController(TimeModel timeModel, PassengersModel passengersModel, CountersModel countersModel, LuggageModel luggageModel)
 		{
 			this._timeModel = timeModel;
 			this._passengersModel = passengersModel;
 			this._countersModel = countersModel;
+			this._luggageModel = luggageModel;
+
+			_timeController = new TimeController(_timeModel, null, null);
 		}
 
-		internal void HandleCounters()
+		internal async void HandleCounters()
 		{
-			while (true)
+			string currentDay = "";
+
+			while (true) // TODO: This is very unoptimized, could have a while loop in MainWindow, starting this service once per new day.
 			{
-				if (_timeModel.IsMidnight())
+				if (currentDay != _timeModel.GetDateTime().ToShortDateString())
 				{
-					// Get passengers
-					List<Dictionary<string, object>> passengersRawData = new DatabaseConnection().CallProcedure("GetPassengersByDepartureDate");
-
-					Passenger[] passengers = passengersRawData.Select(row => new Passenger(
-						firstName: row["first_name"].ToString(),
-						lastName: row["last_name"].ToString(),
-						flightId: Convert.ToUInt32(row["flight_id"]),
-						luggage: new Luggage(1, 1, 1)
-					)).ToArray();
-
+					currentDay = _timeModel.GetDateTime().ToShortDateString();
+					GetPassengers();
 				}
 
-				while (_passengersModel.GetPassengers().Count > 0)
+				foreach(Passenger passenger in _passengersModel.GetPassengers())
 				{
+					_countersModel.AddPassengerToAirport(passenger);
+				}
 
+				_countersModel.TryAddPassengersToCounter();
+
+				await _timeController.WaitForMinutesToPass(1);
+
+				foreach (Counter counter in _countersModel.GetCounters())
+				{
+					Passenger passenger = counter.GetFirstPassengerInQueue();
+
+					_luggageModel.LuggageToSort.Add(passenger.Luggage);
+
+					counter.RemovePassengerFromQueue();
 				}
 			}
+		}
+
+		private void GetPassengers()
+		{
+			var parameters = new Dictionary<string, object> { { "@input_date", _timeModel.GetDateTime().ToShortDateString() } };
+
+			List<Dictionary<string, object>> passengersRawData = new DatabaseConnection().CallProcedure("GetPassengersByDepartureDate", parameters);
+
+			Passenger[] passengers = passengersRawData.Select(row => new Passenger(
+				firstName: row["first_name"].ToString(),
+				lastName: row["last_name"].ToString(),
+				flightId: Convert.ToUInt32(row["flight_id"]),
+				luggage: RegisterLuggage(Convert.ToUInt32(row["flight_id"]))
+			)).ToArray();
+
+			_passengersModel.AddPassengers(passengers);
+		}
+
+
+		private static Luggage RegisterLuggage(uint flightId)
+		{
+			Random random = new Random();
+			byte weight = (byte)random.Next(0, 24);
+
+			return new Luggage(flightId, weight);
 		}
 	}
 }

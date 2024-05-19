@@ -50,6 +50,11 @@ namespace H2_Luggage_sorting.Classes.Models
         {
             return _maxQueueLength;
         }
+
+        internal Passenger GetFirstPassengerInQueue()
+        {
+            return _buffer.First();
+        }
         #endregion
 
     }

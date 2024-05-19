@@ -6,65 +6,43 @@ namespace H2_Luggage_sorting.Classes.Controllers
 {
     internal class LuggageController
     {
-        #region Fields
-        private protected uint _id;
-        private protected string _passenger;
-        private protected uint _flight;
-        private protected float _weight;
+        private LuggageModel _luggageModel = new LuggageModel();
+
+        #region Constructor
+        public LuggageController(LuggageModel luggageModel)
+        {
+            _luggageModel = luggageModel;
+        }
         #endregion
 
-        #region Properties
-        public uint Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
-        public string Passenger
-        {
-            get { return _passenger; }
-            set { _passenger = value; }
-        }
+        #region Methods
 
-        public uint Flight
+        internal void SortLuggageToGate()
         {
-            get { return _flight; }
-            set { _flight = value; }
-        }
-        public float Weight
-        {
-            get { return _weight; }
-            set { _weight = value; }
-        }
-		#endregion
-
-		#region Constructor
-		public LuggageController(uint id, string passenger, uint flight, float weight)
-		{
-			_id = id;
-			_passenger = passenger;
-			_flight = flight;
-			_weight = weight;
-		}
-		#endregion
-
-		#region Methods
-
-		public static void GenerateLuggage(List<Passenger> passengers)
-        {
-            uint luggageId = 1;
-
-            foreach (var passenger in passengers)
+            while (true)
             {
-                Luggage luggage = new Luggage(
-                    luggageId,
-                    passenger.FlightId,  // Using FlightId
-					passenger.Luggage.Weight // Accessing weight from the Luggage object
-				);
+                if (_luggageModel.LuggageToSort.Count > 0)
+                {
+                    List<Luggage> luggageToRemove = new List<Luggage>();
 
-                luggageId++;
+                    foreach (Luggage luggage in _luggageModel.LuggageToSort)
+                    {
+                        if (!_luggageModel.SortedLuggage.ContainsKey(luggage.FlightId))
+                        {
+                            _luggageModel.SortedLuggage[luggage.FlightId] = new List<Luggage>();
+                        }
+
+                        _luggageModel.SortedLuggage[luggage.FlightId].Add(luggage);
+                        luggageToRemove.Add(luggage);
+                    }
+
+                    foreach (Luggage luggage in luggageToRemove)
+                    {
+                        _luggageModel.LuggageToSort.Remove(luggage);
+                    }
+                }
             }
         }
-
         #endregion
     }
 } 

@@ -8,14 +8,10 @@ namespace H2_Luggage_sorting.Interfaces
 {
     public interface IPlane
 	{
-        public string PlaneId { get; }
+        public string FlightId { get; }
         public string Airline {  get; }
         public string PlaneModel { get; }
-        public string FlightId { get; } 
-        public string DepartureTime { get; set; }
-        public ushort AvailableSeats { get; set; }
-
-
-        void DepartPlane();
+        public string FlightNumber { get; } 
+        public DateTime DepartureTime { get; set; }
 	}
 }

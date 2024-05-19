@@ -8,7 +8,7 @@ namespace H2_Luggage_sorting.Classes.Models
 {
 	internal class CountersModel
 	{
-		private Counter[] _counters = new Counter[3];
+		private List<Counter> _counters = new List<Counter>(3);
 		private List<Passenger> _unqueued = new List<Passenger>();
 
 		private void AddPassengerToCounter()
@@ -27,6 +27,19 @@ namespace H2_Luggage_sorting.Classes.Models
 		internal void AddPassengerToAirport(Passenger passenger)
 		{
 			_unqueued.Add(passenger);
+		}
+
+		internal void TryAddPassengersToCounter()
+		{
+			while(_unqueued.Count > 0 ) 
+			{
+				AddPassengerToCounter();
+			}
+		}
+
+		internal List<Counter> GetCounters()
+		{
+			return _counters;
 		}
 	}
 }

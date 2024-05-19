@@ -7,14 +7,14 @@ namespace H2_Luggage_sorting.Classes.Models
 	{
 		private string _connection;
 
-		internal DatabaseConnection() 
+		internal DatabaseConnection()
 		{
 			_connection = ConfigurationManager.ConnectionStrings["AirportDatabase"].ConnectionString;
 		}
 
-		internal List<Dictionary<string, object>> CallProcedure(string procedureName, string[]? args = null)
+		internal List<Dictionary<string, object>> CallProcedure(string procedureName, Dictionary<string, object>? parameters = null)
 		{
-			args = args ?? Array.Empty<string>();
+			parameters = parameters ?? new Dictionary<string, object>();
 			var results = new List<Dictionary<string, object>>();
 
 			using (MySqlConnection connection = new MySqlConnection(_connection))
@@ -23,9 +23,9 @@ namespace H2_Luggage_sorting.Classes.Models
 				{
 					command.CommandType = System.Data.CommandType.StoredProcedure;
 
-					for (int i = 0; i < args.Length; i++)
+					foreach (var param in parameters)
 					{
-						command.Parameters.AddWithValue($"@param{i + 1}", args[i]);
+						command.Parameters.AddWithValue(param.Key, param.Value);
 					}
 
 					connection.Open();
@@ -46,6 +46,7 @@ namespace H2_Luggage_sorting.Classes.Models
 
 			return results;
 		}
+
 
 	}
 }

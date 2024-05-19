@@ -10,143 +10,145 @@
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="500" Width="800">
     <Grid>
-        <Grid> <!-- Check-in -->
-            <Grid.RowDefinitions>
-                <RowDefinition Height=".3*"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" x:Name="RedButton" Click="MyButton_Click" Tag="Counter1" Background="Transparent" BorderBrush="Transparent">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height=".3*"/>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--This is the Navbar-->
+        <Grid Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Tag="CheckInSection" Click="NavbarButton_Click">Check In</Button>
+            <Button Grid.Column="1" Tag="ConveyorBeltSection" Click="NavbarButton_Click">Conveyor Belt</Button>
+            <Button Grid.Column="2" Tag="GatesSection" Click="NavbarButton_Click">Gates</Button>
+            <TextBlock Grid.Column="3" HorizontalAlignment="Center" x:Name="clock">01/06/2024 00:00:00</TextBlock>
+        </Grid> 
 
-                                <!-- Background image -->
-                                <Image Grid.Row="0" Source="/Images/No1.png"></Image>
-                                <Image Grid.Row="1" Source="/Images/CounterRed.png"/>
-
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
-                <Button Grid.Column="1" x:Name="OrangeButton" Click="MyButton_Click" Tag="Counter2" Background="Transparent" BorderBrush="Transparent">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height=".3*"/>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-
-                                <!-- Background image -->
-                                <Image Grid.Row="0" Source="/Images/No2.png"></Image>
-                                <Image Grid.Row="1" Source="/Images/CounterOrange.png"/>
-
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
-                <Button Grid.Column="2" x:Name="GreenButton" Click="MyButton_Click" Tag="Counter3" Background="Transparent" BorderBrush="Transparent">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height=".3*"/>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-
-                                <!-- Background image -->
-                                <Image Grid.Row="0" Source="/Images/No3.png"></Image>
-                                <Image Grid.Row="1" Source="/Images/CounterGreen.png"/>
-
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+        <Grid Grid.Row="1">
+            <!-- Check-in Section -->
+            <Grid x:Name="CheckInSection" Visibility="Visible">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" x:Name="RedButton" Click="MyButton_Click" Tag="Counter1" Background="Transparent" BorderBrush="Transparent">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.3*"/>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0" Source="/Images/No1.png"></Image>
+                                    <Image Grid.Row="1" Source="/Images/CounterRed.png"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Grid.Column="1" x:Name="OrangeButton" Click="MyButton_Click" Tag="Counter2" Background="Transparent" BorderBrush="Transparent">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.3*"/>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0" Source="/Images/No2.png"></Image>
+                                    <Image Grid.Row="1" Source="/Images/CounterOrange.png"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Grid.Column="2" x:Name="GreenButton" Click="MyButton_Click" Tag="Counter3" Background="Transparent" BorderBrush="Transparent">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.3*"/>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0" Source="/Images/No3.png"></Image>
+                                    <Image Grid.Row="1" Source="/Images/CounterGreen.png"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+                <TextBlock FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center">Check-in</TextBlock>
             </Grid>
-            <TextBlock FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center">Check-in</TextBlock>
-        </Grid>
-        <Grid> <!-- Conveyor-in -->
-            <Image gif:ImageBehavior.AnimatedSource="/Images/belt.gif"></Image>
-        </Grid>
-        <Grid> <!-- Gates -->
-            <Grid.RowDefinitions>
-                <RowDefinition Height=".2*"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Background="Transparent" BorderBrush="Transparent">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height=".3*"/>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
 
-                                <!-- Background image -->
-                                <Image Grid.Row="0" Source="/Images/No1.png"></Image>
-                                <Image Grid.Row="1" Source="/images/Gate.png"/>
-
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height=".3*"/>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-
-                                <!-- Background image -->
-                                <Image Grid.Row="0" Source="/Images/No2.png"></Image>
-                                <Image Grid.Row="1" Source="/images/Gate.png"/>
-
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button Grid.Column="2" Background="Transparent" BorderBrush="Transparent">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height=".3*"/>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-
-                                <!-- Background image -->
-                                <Image Grid.Row="0" Source="/Images/No3.png"></Image>
-                                <Image Grid.Row="1" Source="/images/Gate.png"/>
-
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+            <!-- Conveyor Belt Section -->
+            <Grid x:Name="ConveyorBeltSection" Visibility="Collapsed">
+                <Image gif:ImageBehavior.AnimatedSource="/Images/belt.gif"></Image>
             </Grid>
-            <TextBlock FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center">Select Gate</TextBlock>
-        </Grid>
-        <Grid> <!-- Clock -->
-            <TextBlock x:Name="clock">01/06/2024 00:00:00</TextBlock>
+
+            <!-- Gates Section -->
+            <Grid x:Name="GatesSection" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Background="Transparent" BorderBrush="Transparent">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.3*"/>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0" Source="/Images/No1.png"></Image>
+                                    <Image Grid.Row="1" Source="/images/Gate.png"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.3*"/>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0" Source="/Images/No2.png"></Image>
+                                    <Image Grid.Row="1" Source="/images/Gate.png"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Grid.Column="2" Background="Transparent" BorderBrush="Transparent">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.3*"/>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0" Source="/Images/No3.png"></Image>
+                                    <Image Grid.Row="1" Source="/images/Gate.png"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+                <TextBlock FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center">Select Gate</TextBlock>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

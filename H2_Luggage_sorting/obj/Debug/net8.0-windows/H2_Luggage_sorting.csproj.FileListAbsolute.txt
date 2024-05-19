@@ -83,3 +83,4 @@ C:\Users\magnu\source\repos\H2_Luggage_sorting\H2_Luggage_sorting\bin\Debug\net8
 C:\Users\magnu\source\repos\H2_Luggage_sorting\H2_Luggage_sorting\bin\Debug\net8.0-windows\runtimes\win-x64\native\k5sprt64.dll
 C:\Users\magnu\source\repos\H2_Luggage_sorting\H2_Luggage_sorting\bin\Debug\net8.0-windows\runtimes\win-x64\native\krb5_64.dll
 C:\Users\magnu\source\repos\H2_Luggage_sorting\H2_Luggage_sorting\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
+C:\Users\magnu\source\repos\H2_Luggage_sorting\H2_Luggage_sorting\bin\Debug\net8.0-windows\H2_Luggage_sorting.dll.config
