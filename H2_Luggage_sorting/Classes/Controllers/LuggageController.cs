@@ -9,7 +9,7 @@ namespace H2_Luggage_sorting.Classes.Controllers
         private LuggageModel _luggageModel = new LuggageModel();
 
         #region Constructor
-        public LuggageController(LuggageModel luggageModel)
+        internal LuggageController(LuggageModel luggageModel)
         {
             _luggageModel = luggageModel;
         }
@@ -23,23 +23,8 @@ namespace H2_Luggage_sorting.Classes.Controllers
             {
                 if (_luggageModel.LuggageToSort.Count > 0)
                 {
-                    List<Luggage> luggageToRemove = new List<Luggage>();
-
-                    foreach (Luggage luggage in _luggageModel.LuggageToSort)
-                    {
-                        if (!_luggageModel.SortedLuggage.ContainsKey(luggage.FlightId))
-                        {
-                            _luggageModel.SortedLuggage[luggage.FlightId] = new List<Luggage>();
-                        }
-
-                        _luggageModel.SortedLuggage[luggage.FlightId].Add(luggage);
-                        luggageToRemove.Add(luggage);
-                    }
-
-                    foreach (Luggage luggage in luggageToRemove)
-                    {
-                        _luggageModel.LuggageToSort.Remove(luggage);
-                    }
+                    _luggageModel.SortedLuggage.Add(_luggageModel.LuggageToSort.First());
+                    _luggageModel.LuggageToSort.Remove(_luggageModel.LuggageToSort.First());
                 }
             }
         }

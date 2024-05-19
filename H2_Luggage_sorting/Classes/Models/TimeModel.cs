@@ -57,18 +57,6 @@ namespace H2_Luggage_sorting.Classes.Models
             return _date;   
         }
 
-        internal bool IsMidnight()
-        {
-            if(_date.TimeOfDay == TimeSpan.Zero)
-            {
-                return true;
-            }
-             else
-            {
-                return false;
-            }
-        }
-
 		internal int GetTicks()
 		{
 			return _ticks;

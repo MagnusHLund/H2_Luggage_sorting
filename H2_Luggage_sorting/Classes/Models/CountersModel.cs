@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace H2_Luggage_sorting.Classes.Models
+﻿namespace H2_Luggage_sorting.Classes.Models
 {
 	internal class CountersModel
 	{
@@ -15,9 +9,9 @@ namespace H2_Luggage_sorting.Classes.Models
 		{
 			foreach (Counter counter in _counters)
 			{
-				if(counter.GetCounterQueueLength() > counter.GetMaxQueueCapacitiy())
+				if(counter.Buffer.Count > counter.MaxQueueLength)
 				{
-					counter.AddPassengerToQueue(_unqueued.First());
+					counter.Buffer.Add(_unqueued.First());
 					_unqueued.Remove(_unqueued.First());
 					return;
 				}

@@ -11,20 +11,20 @@ namespace H2_Luggage_sorting.Classes.Models
 	{
         #region Fields
         private List<Luggage> _luggageToSort = new List<Luggage>();
-        private Dictionary<uint, List<Luggage>> _sortedLuggage = new Dictionary<uint, List<Luggage>>();
+        private List<Luggage> _sortedLuggage = new List<Luggage>();
         #endregion
 
         #region Properties
         internal List<Luggage> LuggageToSort
         {
-            get => _luggageToSort;
-            set => _luggageToSort = value;
+            get { return _luggageToSort; }
+            set { _luggageToSort = value; }
         }
 
-        internal Dictionary<uint, List<Luggage>> SortedLuggage
+        internal List<Luggage> SortedLuggage
         {
-            get => _sortedLuggage;
-            set => _sortedLuggage = value;
+            get { return _sortedLuggage; }
+            set { _sortedLuggage = value; }
         }
         #endregion
     }

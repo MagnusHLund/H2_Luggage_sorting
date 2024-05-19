@@ -24,6 +24,7 @@ namespace H2_Luggage_sorting
 		private CountersModel _countersModel = new CountersModel();
 		private GateModel _gateModel = new GateModel();
 		private LuggageModel _luggageModel = new LuggageModel();
+		private PlaneModel _planeModel = new PlaneModel();
 
 		public MainWindow()
 		{
@@ -40,15 +41,18 @@ namespace H2_Luggage_sorting
 			thread.Start();
 
 			// Check-in
-			// ^ New passengers gets created, at midnight everyday, based on the flight that they have to be on.
-			// ^ This information is gathered from a stored procedure.
-			// ^ There are 3 check-in counters and each can help 1 passenger at a time. It takes 1 minute to help a passenger. 
-			// ^ There is minimum 1 counter open and number 2 opens if number 1 has 20 people in queue. Number 3 opens if number 2 has 20 people in queue. 
-			CheckInController checkInController = new CheckInController(_timeModel, _passengersModel, _countersModel, _luggageModel);
+			CheckInController checkInController = new CheckInController(_timeModel, _passengersModel, _countersModel, _luggageModel, Dispatcher);
 			Task.Run(() => checkInController.HandleCounters());
 
+			// Luggage controller
 			LuggageController luggageController = new LuggageController(_luggageModel);
 			Task.Run(() => luggageController.SortLuggageToGate());
+
+			// Status report
+			StatusReportController statusReportController = new StatusReportController(_planeModel, _timeModel, _luggageModel);
+			Task.Run(() => statusReportController.GenerateStatusReport());
+
+			new PlaneController(_planeModel, _timeModel).GetFlights();
 		}
 
 		private void NavbarButton_Click(object sender, RoutedEventArgs e)
@@ -68,9 +72,5 @@ namespace H2_Luggage_sorting
 			GatesSection.Visibility = sectionName == "GatesSection" ? Visibility.Visible : Visibility.Collapsed;
 		}
 
-		private void MyButton_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
 	}
 }

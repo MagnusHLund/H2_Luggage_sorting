@@ -41,7 +41,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" x:Name="RedButton" Click="MyButton_Click" Tag="Counter1" Background="Transparent" BorderBrush="Transparent">
+                    <Button Grid.Column="0" x:Name="Counter1" Background="Transparent" BorderBrush="Transparent">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Grid>
@@ -50,12 +50,12 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Image Grid.Row="0" Source="/Images/No1.png"></Image>
-                                    <Image Grid.Row="1" Source="/Images/CounterRed.png"/>
+                                    <Image Grid.Row="1" x:Name="Counter3Ima" Source="/Images/CounterRed.png"/>
                                 </Grid>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button Grid.Column="1" x:Name="OrangeButton" Click="MyButton_Click" Tag="Counter2" Background="Transparent" BorderBrush="Transparent">
+                    <Button Grid.Column="1" x:Name="Counter2" Background="Transparent" BorderBrush="Transparent">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Grid>
@@ -64,12 +64,12 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Image Grid.Row="0" Source="/Images/No2.png"></Image>
-                                    <Image Grid.Row="1" Source="/Images/CounterOrange.png"/>
+                                    <Image Grid.Row="1" x:Name="Counter2Img" Source="/Images/CounterOrange.png"/>
                                 </Grid>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button Grid.Column="2" x:Name="GreenButton" Click="MyButton_Click" Tag="Counter3" Background="Transparent" BorderBrush="Transparent">
+                    <Button Grid.Column="2" x:Name="Counter3" Background="Transparent" BorderBrush="Transparent">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Grid>
@@ -78,7 +78,7 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Image Grid.Row="0" Source="/Images/No3.png"></Image>
-                                    <Image Grid.Row="1" Source="/Images/CounterGreen.png"/>
+                                    <Image Grid.Row="1" x:Name="Counter3Img" Source="/Images/CounterGreen.png"/>
                                 </Grid>
                             </ControlTemplate>
                         </Button.Template>

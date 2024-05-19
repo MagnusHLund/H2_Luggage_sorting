@@ -34,7 +34,6 @@
     <None Remove="Images\No2.png" />
     <None Remove="Images\No3.png" />
     <None Remove="Images\ticket.png" />
-    <None Remove="Interfaces\NewFile1.txt" />
   </ItemGroup>
 
   <ItemGroup>

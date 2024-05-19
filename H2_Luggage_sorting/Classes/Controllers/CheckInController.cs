@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents.DocumentStructures;
+using System.Windows.Threading;
 
 namespace H2_Luggage_sorting.Classes.Controllers
 {
@@ -14,12 +16,10 @@ namespace H2_Luggage_sorting.Classes.Controllers
 		private PassengersModel _passengersModel;
 		private CountersModel _countersModel;
 		private LuggageModel _luggageModel;
-		
-
 
 		private TimeController _timeController;
 
-		internal CheckInController(TimeModel timeModel, PassengersModel passengersModel, CountersModel countersModel, LuggageModel luggageModel)
+		internal CheckInController(TimeModel timeModel, PassengersModel passengersModel, CountersModel countersModel, LuggageModel luggageModel, Dispatcher dispatch)
 		{
 			this._timeModel = timeModel;
 			this._passengersModel = passengersModel;
@@ -52,11 +52,19 @@ namespace H2_Luggage_sorting.Classes.Controllers
 
 				foreach (Counter counter in _countersModel.GetCounters())
 				{
-					Passenger passenger = counter.GetFirstPassengerInQueue();
+					Passenger passenger = counter.Buffer.First();
 
 					_luggageModel.LuggageToSort.Add(passenger.Luggage);
 
-					counter.RemovePassengerFromQueue();
+					counter.Buffer.TryTake(out passenger);
+
+					if(counter.Buffer.Count > 1)
+					{
+						counter.Status = "Busy";
+					} else if (counter.Buffer.Count == 0)
+					{
+						counter.Status = "Available";
+					}
 				}
 			}
 		}
@@ -76,7 +84,6 @@ namespace H2_Luggage_sorting.Classes.Controllers
 
 			_passengersModel.AddPassengers(passengers);
 		}
-
 
 		private static Luggage RegisterLuggage(uint flightId)
 		{

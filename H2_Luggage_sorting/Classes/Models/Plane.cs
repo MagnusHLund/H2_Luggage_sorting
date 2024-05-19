@@ -1,36 +1,34 @@
-﻿using H2_Luggage_sorting.Interfaces;
-
-namespace H2_Luggage_sorting.Classes.Models
+﻿namespace H2_Luggage_sorting.Classes.Models
 {
-    public class Plane : IPlane
+    internal class Plane
 	{
 		#region Fields
 		private protected string _flightId = "";
-		public string _airline = "";
-		public string _planeModel = "";
+		internal string _airline = "";
+		internal string _planeModel = "";
 		private protected string _flightNumber = "";
 		private protected DateTime _departureTime;
 		#endregion
 
 		#region Properties
 
-		public string FlightId 
+		internal string FlightId 
         { 
             get { return _flightId; } 
         }
-		public string Airline
+		internal string Airline
 		{
 			get { return _airline; }
 		}
-		public string PlaneModel
+		internal string PlaneModel
 		{
 			get { return _planeModel; }
 		}
-        public string FlightNumber
+        internal string FlightNumber
 		{
 			get { return _flightNumber; }
 		}
-		public DateTime DepartureTime
+		internal DateTime DepartureTime
 		{
 			get { return _departureTime; }
 			set { _departureTime = value; }

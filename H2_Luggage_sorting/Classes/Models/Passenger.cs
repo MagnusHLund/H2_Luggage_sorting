@@ -1,5 +1,4 @@
-﻿using H2_Luggage_sorting.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace H2_Luggage_sorting.Classes.Models
 {
-	internal class Passenger : IPassenger
+	internal class Passenger 
 	{
 		#region Properties
-		public string FirstName { get; }
-		public string LastName { get; }
-		public uint FlightId { get; }
-		public Luggage Luggage {  get; }
+		internal string FirstName { get; }
+		internal string LastName { get; }
+		internal uint FlightId { get; }
+		internal Luggage Luggage {  get; }
         #endregion
 
         #region Constructors

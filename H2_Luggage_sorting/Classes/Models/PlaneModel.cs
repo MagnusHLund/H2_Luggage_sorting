@@ -10,13 +10,13 @@ namespace H2_Luggage_sorting.Classes.Models
     {
         #region Fields
 
-        public List<Plane> _planes = new List<Plane>();
+        internal List<Plane> _planes = new List<Plane>();
 
         #endregion Fields
 
         #region Properites
 
-        public List<Plane> Planes
+        internal List<Plane> Planes
         {
             get { return _planes; }
             set { _planes = value; }

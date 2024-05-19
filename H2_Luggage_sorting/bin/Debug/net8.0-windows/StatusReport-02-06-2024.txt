@@ -1,0 +1,48 @@
+Status Report
+-------------
+Flight ID: 1
+Plane Model: Boeing 737
+Departure Time: 01-06-2024 08:00:00
+
+Luggage List:
+-------------
+Status Report
+-------------
+Flight ID: 4
+Plane Model: Embraer E190
+Departure Time: 01-06-2024 12:00:00
+
+Luggage List:
+-------------
+Status Report
+-------------
+Flight ID: 2
+Plane Model: Airbus A320
+Departure Time: 01-06-2024 12:00:00
+
+Luggage List:
+-------------
+Status Report
+-------------
+Flight ID: 5
+Plane Model: Airbus A320
+Departure Time: 01-06-2024 14:00:00
+
+Luggage List:
+-------------
+Status Report
+-------------
+Flight ID: 3
+Plane Model: Embraer E190
+Departure Time: 01-06-2024 15:00:00
+
+Luggage List:
+-------------
+Status Report
+-------------
+Flight ID: 6
+Plane Model: Embraer E190
+Departure Time: 01-06-2024 17:00:00
+
+Luggage List:
+-------------
