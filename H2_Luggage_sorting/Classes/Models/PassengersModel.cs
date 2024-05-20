@@ -1,34 +1,26 @@
-﻿ using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace H2_Luggage_sorting.Classes.Models
 {
 	internal class PassengersModel
 	{
-		private List<Passenger> _passengers = new List<Passenger>();
+		#region Fields
 
-		internal void AddPassengers(Passenger[] passengers)
+		private List<Passenger> _passengers = new List<Passenger>(); // List to store passengers
+
+		#endregion
+
+		#region Properties
+
+		/// <summary>
+		/// Gets or sets the list of passengers.
+		/// </summary>
+		internal List<Passenger> Passengers
 		{
-			foreach (Passenger passenger in passengers) 
-			{ 
-				_passengers.Add(passenger);
-			}
+			get { return _passengers; }
+			set { _passengers = value; }
 		}
 
-		internal void RemovePassengers(Passenger[] passengers)
-		{
-			foreach(Passenger passenger in passengers)
-			{
-				_passengers.Remove(passenger);
-			}
-		}
-
-		internal List<Passenger> GetPassengers()
-		{
-			return _passengers;
-		}
+		#endregion
 	}
 }

@@ -1,33 +1,39 @@
 ﻿using H2_Luggage_sorting.Classes.Models;
-using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace H2_Luggage_sorting.Classes.Controllers
 {
-    internal class LuggageController
-    {
-        private LuggageModel _luggageModel = new LuggageModel();
+	internal class LuggageController
+	{
+		private readonly LuggageModel _luggageModel;
+		private readonly object _lock = new object(); // Lock object
 
-        #region Constructor
-        internal LuggageController(LuggageModel luggageModel)
-        {
-            _luggageModel = luggageModel;
-        }
-        #endregion
+		/// <summary>
+		/// Initializes a new instance of the LuggageController class with the provided luggage model.
+		/// </summary>
+		/// <param name="luggageModel">The luggage model.</param>
+		internal LuggageController(LuggageModel luggageModel)
+		{
+			_luggageModel = luggageModel;
+		}
 
-        #region Methods
-
-        internal void SortLuggageToGate()
-        {
-            while (true)
-            {
-                if (_luggageModel.LuggageToSort.Count > 0)
-                {
-                    _luggageModel.SortedLuggage.Add(_luggageModel.LuggageToSort.First());
-                    _luggageModel.LuggageToSort.Remove(_luggageModel.LuggageToSort.First());
-                }
-            }
-        }
-        #endregion
-    }
-} 
+		/// <summary>
+		/// Continuously sorts luggage to gates.
+		/// </summary>
+		internal void SortLuggageToGate()
+		{
+			while (true)
+			{
+				lock (_lock) // Ensure that sorting luggage is thread-safe
+				{
+					if (_luggageModel.LuggageToSort.Any())
+					{
+						var luggage = _luggageModel.LuggageToSort.First();
+						_luggageModel.SortedLuggage.Add(luggage);
+						_luggageModel.LuggageToSort.Remove(luggage);
+					}
+				}
+			}
+		}
+	}
+}

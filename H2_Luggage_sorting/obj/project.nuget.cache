@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CjI2aMKMaQk8TyuZlpJ9ipHXVg3oiCXZv6wDDe23Pvg24H5kOergJIf3n6P7wlxKrNHd+1gYOR8FRoz9Me6VAg==",
+  "dgSpecHash": "qQ9ZZruHr0x70w9Yu9enBXoTdQZR0JNWFtukQlFzUV1G8mWKxnvDXZF+QsYLKmFUqXfw2zJ6KsveayZZmTPJrQ==",
   "success": true,
-  "projectFilePath": "c:\\Users\\magnu\\source\\repos\\H2_Luggage_sorting\\H2_Luggage_sorting\\H2_Luggage_sorting.csproj",
+  "projectFilePath": "C:\\Users\\magnu\\source\\repos\\H2_Luggage_sorting\\H2_Luggage_sorting\\H2_Luggage_sorting.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\magnu\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\magnu\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",

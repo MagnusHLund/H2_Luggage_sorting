@@ -1,64 +1,73 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace H2_Luggage_sorting.Classes.Models
 {
-    /// <summary>
-    /// This class is responsible for handling gates, their opening times, and if they're open.
-    /// </summary>
-    internal class Gate
-    {
-        // This const is responisble for the amount of hours before a gate opens before depature time.
-        const int GATE_OPENING_TIME_BEFORE_DEPATURE = -1;
-        #region Fields
+	/// <summary>
+	/// This class represents a gate and its associated properties.
+	/// </summary>
+	internal class Gate
+	{
+		// Constant representing the number of hours before departure that a gate opens
+		internal const int GATE_OPENING_TIME_BEFORE_DEPARTURE = -1;
 
-        private byte _gateNumber;
-        private bool _isGateOpen;
-        private Plane _plane;
-        private DateTime _gateOpeningTime;
+		#region Fields
 
-        /// <summary>
-        /// Gate opening time is calculated in the constructor.
-        /// </summary>
+		private byte _gateNumber; // The number of the gate
+		private bool _isGateOpen; // Indicates whether the gate is open
+		private Plane _plane; // The plane assigned to the gate
+		private DateTime _gateOpeningTime; // The calculated time when the gate opens
 
-        #endregion
+		#endregion
 
-        #region Constructors
+		#region Constructors
 
-        public Gate(byte gateNumber, bool isGateOpen, Plane plane)
-        {
-            _gateNumber = gateNumber;
-            _isGateOpen = isGateOpen;
-            _plane = plane;
-            // Removing one our from our depatureTime variable, and storing it in our _gateOpeningTime variable, because gates open 1 hour before departure time.
-            DateTime depatureTime = plane.DepartureTime.AddHours(GATE_OPENING_TIME_BEFORE_DEPATURE);
-            _gateOpeningTime = depatureTime;
-        }
+		/// <summary>
+		/// Initializes a new instance of the Gate class with the specified gate number, gate status, and assigned plane.
+		/// </summary>
+		/// <param name="gateNumber">The number of the gate.</param>
+		/// <param name="isGateOpen">Indicates whether the gate is open.</param>
+		/// <param name="plane">The plane assigned to the gate.</param>
+		internal Gate(byte gateNumber, bool isGateOpen, Plane plane)
+		{
+			_gateNumber = gateNumber;
+			_isGateOpen = isGateOpen;
+			_plane = plane;
+			// Calculate the gate opening time based on the departure time of the assigned plane
+			DateTime departureTime = plane.DepartureTime.AddHours(GATE_OPENING_TIME_BEFORE_DEPARTURE);
+			_gateOpeningTime = departureTime;
+		}
 
-        #endregion
+		#endregion
 
-        #region Properties
+		#region Properties
 
-        public byte GateNumber
-        {
-            get { return _gateNumber; }
-            set { _gateNumber = value; }
-        }
+		/// <summary>
+		/// Gets or sets the number of the gate.
+		/// </summary>
+		internal byte GateNumber
+		{
+			get { return _gateNumber; }
+			set { _gateNumber = value; }
+		}
 
-        public bool IsGateOpen
-        {
-            get { return _isGateOpen; }
-            set { _isGateOpen = value; }
-        }
+		/// <summary>
+		/// Gets or sets a value indicating whether the gate is open.
+		/// </summary>
+		internal bool IsGateOpen
+		{
+			get { return _isGateOpen; }
+			set { _isGateOpen = value; }
+		}
 
-        public Plane Plane
-        {
-            get { return _plane; }
-            set { this._plane = value; }
-        }
-        #endregion
-    }
+		/// <summary>
+		/// Gets or sets the plane assigned to the gate.
+		/// </summary>
+		internal Plane Plane
+		{
+			get { return _plane; }
+			set { _plane = value; }
+		}
+
+		#endregion
+	}
 }

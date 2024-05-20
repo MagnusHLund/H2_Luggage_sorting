@@ -1,96 +1,101 @@
 ﻿using H2_Luggage_sorting.Classes.Models;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Threading;
 
 namespace H2_Luggage_sorting.Classes.Controllers
 {
-    internal class GateController
-    {
+	internal class GateController
+	{
+		#region Instances
+		private TimeModel _timeModel;
+		private GateModel _gateModel;
+		private TimeController _timeController;
+		private readonly object _lock = new object(); // Lock object
+		#endregion
 
-
-        private TimeModel _timeModel;
-        private PassengersModel _passengersModel;
-        private CountersModel _countersModel;
-        private LuggageModel _luggageModel;
-        private TimeController _timeController;
-
-        internal GateController(TimeModel timeModel, PassengersModel passengersModel, CountersModel countersModel, LuggageModel luggageModel, Dispatcher dispatch)
-        {
-            this._timeModel = timeModel;
-            this._passengersModel = passengersModel;
-            this._countersModel = countersModel;
-            this._luggageModel = luggageModel;
-
-            _timeController = new TimeController(_timeModel, null, null);
-        }
-
-        #region Methods
-        // Denne metode tage alle fly afgangene for en dag, den tager 3 fly afgange ad gangen, når den har taget 3, 
-        internal void OpenCloseGate(List<Gate> gates, List<Plane> planes) // TODO: Fix List<Gate> to GateModel and same with planes
+		#region Constructor
+		/// <summary>
+		/// Initializes a new instance of the GateController class with the provided time and gate models.
+		/// </summary>
+		/// <param name="timeModel">The time model.</param>
+		/// <param name="gateModel">The gate model.</param>
+		internal GateController(TimeModel timeModel, GateModel gateModel)
 		{
-            // Counting how many gates currently are used
-            byte count = 0;
-            while (true)
-            {
-                for (byte i = 0; i < planes.Count(); i++)                // TODO: hvis mindre end 3 afgange er tilbage vil den køre forevigt.
-                {
-                    if (count >= 3)                                     // maybe add or statement here?
-                    {
-                        // Waiting for all depatures
-                        WaitForAllDepatures(gates);
-                        count = 0;
+			this._timeModel = timeModel;
+			this._gateModel = gateModel;
+			this._timeController = new TimeController(_timeModel, null, null);
+		}
+		#endregion
 
-                                                                          // TODO: remove airplane from gate list in gatemodel when airplane has left.
-                    }
-                    else
-                    {
-                        // Adding airplane to current gates used
-                        Gate gateTemp = new Gate(count, false, planes[i]);
-                        gates.Add(gateTemp);
-                        count++;
-                    }
-                }
-            }
-        }
+		#region Methods
+		/// <summary>
+		/// Handles the click event for a gate, either opening or closing it based on its current state.
+		/// </summary>
+		/// <param name="gate">The gate to handle.</param>
+		internal void HandleGateClick(Gate gate)
+		{
+			lock (_lock) // Ensure that gate operations are thread-safe
+			{
+				if (gate.IsGateOpen)
+				{
+					CloseGate(gate);
+				}
+				else
+				{
+					OpenGate(gate);
+				}
+			}
+		}
 
-        /// <summary>
-        /// This method takes a list of gates, the gates that are currently in use.
-        /// </summary>
-        /// <param name="gates"></param>
-        internal void WaitForAllDepatures(List<Gate> gates)
-        {
-            _timeController = new TimeController(_timeModel, null, null);
+		/// <summary>
+		/// Opens the specified gate if it meets the necessary conditions.
+		/// </summary>
+		/// <param name="gate">The gate to open.</param>
+		internal void OpenGate(Gate gate)
+		{
+			lock (_lock) // Ensure that opening the gate is thread-safe
+			{
+				if (gate.Plane != null && !_gateModel.Gates.Any(g => g.IsGateOpen && g.Plane == gate.Plane))
+				{
+					gate.IsGateOpen = true;
+					Console.WriteLine($"Gate {gate.GateNumber} is now open for flight {gate.Plane.FlightNumber}.");
+				}
+			}
+		}
 
-            // going through the 3 gates in a foreach loop
-            foreach (Gate gate in gates)
-            {
-                // Getting current time og departure time
-                DateTime currentTime = _timeModel.GetDateTime();
-                DateTime departureTime = gate.Plane.DepartureTime;
-                // Starting a new thread for each gate
-                Thread thread = new Thread(() => WaitForDepature(departureTime, currentTime));
+		/// <summary>
+		/// Closes the specified gate.
+		/// </summary>
+		/// <param name="gate">The gate to close.</param>
+		internal void CloseGate(Gate gate)
+		{
+			lock (_lock) // Ensure that closing the gate is thread-safe
+			{
+				gate.IsGateOpen = false;
+				Console.WriteLine($"Gate {gate.GateNumber} is now closed. Flight {gate.Plane.FlightNumber} has departed.");
+				_gateModel.Gates.Remove(gate);
+			}
+		}
 
-            }
-        }
-
-        /// <summary>
-        /// This method takes two datetime variables and waits until they "match" each other
-        /// </summary>
-        /// <param name="depature"></param>
-        /// <param name="currentime"></param>
-        internal void WaitForDepature(DateTime depature, DateTime currentime)
-        {
-            while (currentime < depature)
-            {
-                Thread.Sleep(_timeModel.GetTicks());
-            }
-        }
-        #endregion
-    }
+		/// <summary>
+		/// Updates the status of gates, opening them if departure time is near.
+		/// </summary>
+		internal void UpdateGateStatus()
+		{
+			lock (_lock) // Ensure that updating gate status is thread-safe
+			{
+				DateTime currentTime = _timeModel.Date;
+				foreach (var gate in _gateModel.Gates)
+				{
+					if (!gate.IsGateOpen && gate.Plane.DepartureTime.AddHours(Gate.GATE_OPENING_TIME_BEFORE_DEPARTURE) <= currentTime)
+					{
+						OpenGate(gate);
+					}
+				}
+			}
+		}
+		#endregion
+	}
 }

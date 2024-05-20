@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace H2_Luggage_sorting.Classes.Models
 {
 	internal class SortedLuggage
 	{
-
 		#region Properties
-		internal string Gate {  get; set; }
+
+		internal string Gate { get; set; } // Property to store the gate where the luggage is sorted
+
 		#endregion
 
 		#region Constructor
 
 		internal SortedLuggage(uint flightId, float weight, string gate)
 		{
-			this.Gate = gate;
+			this.Gate = gate; // Initialize the gate property with the provided value
 		}
+
 		#endregion
 	}
 }

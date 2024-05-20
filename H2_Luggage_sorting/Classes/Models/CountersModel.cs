@@ -2,38 +2,27 @@
 {
 	internal class CountersModel
 	{
-		private List<Counter> _counters = new List<Counter>(3);
-		private List<Passenger> _unqueued = new List<Passenger>();
+		private List<Counter> _counters; // List to store counters
+		private List<Passenger> _unqueued = new List<Passenger>(); // List to store unqueued passengers
 
-		private void AddPassengerToCounter()
+		// Constructor to initialize the CountersModel with a list of counters
+		internal CountersModel(List<Counter> counters)
 		{
-			foreach (Counter counter in _counters)
-			{
-				if(counter.Buffer.Count > counter.MaxQueueLength)
-				{
-					counter.Buffer.Add(_unqueued.First());
-					_unqueued.Remove(_unqueued.First());
-					return;
-				}
-			}
+			_counters = counters;
 		}
 
-		internal void AddPassengerToAirport(Passenger passenger)
+		// Property to get or set the list of counters
+		internal List<Counter> Counters
 		{
-			_unqueued.Add(passenger);
+			get { return _counters; }
+			set { _counters = value; }
 		}
 
-		internal void TryAddPassengersToCounter()
+		// Property to get or set the list of unqueued passengers
+		internal List<Passenger> Unqueued
 		{
-			while(_unqueued.Count > 0 ) 
-			{
-				AddPassengerToCounter();
-			}
-		}
-
-		internal List<Counter> GetCounters()
-		{
-			return _counters;
+			get { return _unqueued; }
+			set { _unqueued = value; }
 		}
 	}
 }

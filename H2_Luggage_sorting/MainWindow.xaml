@@ -50,7 +50,7 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Image Grid.Row="0" Source="/Images/No1.png"></Image>
-                                    <Image Grid.Row="1" x:Name="Counter3Ima" Source="/Images/CounterRed.png"/>
+                                    <Image Grid.Row="1" x:Name="Counter1Img" Source="/Images/CounterRed.png"/>
                                 </Grid>
                             </ControlTemplate>
                         </Button.Template>

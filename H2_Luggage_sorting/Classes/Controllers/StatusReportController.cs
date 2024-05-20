@@ -16,13 +16,17 @@ namespace H2_Luggage_sorting.Classes.Controllers
 		private protected PlaneModel _planeModel;
 		private protected LuggageModel _luggageModel;
 
-
-
 		static string directory = Environment.CurrentDirectory;
 		#endregion
 
 
 		#region Constructor
+		/// <summary>
+		/// Initializes a new instance of the StatusReportController class with the provided plane, time, and luggage models.
+		/// </summary>
+		/// <param name="planeModel">The plane model.</param>
+		/// <param name="timeModel">The time model.</param>
+		/// <param name="luggageModel">The luggage model.</param>
 		internal StatusReportController(PlaneModel planeModel, TimeModel timeModel, LuggageModel luggageModel)
 		{
 			this._planeModel = planeModel;
@@ -32,19 +36,24 @@ namespace H2_Luggage_sorting.Classes.Controllers
 		#endregion
 
 		#region Methods
+		/// <summary>
+		/// Generates a status report text file with information about planes and their luggage.
+		/// </summary>
 		internal void GenerateStatusReport()
 		{
-			string currentTime = _timeModel.GetDateTime().ToShortDateString();
+			string currentTime = _timeModel.Date.ToShortDateString();
 
 			while (true)
 			{
-				if (currentTime != _timeModel.GetDateTime().ToShortDateString())
+				if (currentTime != _timeModel.Date.ToShortDateString())
 				{
-					currentTime = _timeModel.GetDateTime().ToShortDateString();
+					// Sets the time to the previous day
+					currentTime = _timeModel.Date.AddDays(-1).ToShortDateString();
 
 					string path = $"{directory}/StatusReport-{currentTime}.txt";
 					StringBuilder reportContent = new StringBuilder();
 
+					// Write information to the daily log file
 					foreach (Plane plane in _planeModel.Planes)
 					{
 						reportContent.AppendLine("Status Report");
